@@ -14,7 +14,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-//Importamos el servicio ListService del fichero app.service.ts  
+//Importamos el servicio ListService del fichero app.service.ts
 var app_service_1 = require("./app.service");
 /**
  * Definimos el componente haciendo uso del decorator @Component
@@ -26,21 +26,12 @@ var app_service_1 = require("./app.service");
 var AppComponent = /** @class */ (function () {
     //Usamos los parámetros del constructor del componente para
     // instanciar el o los servicios, en este caso inyectamos e
-    // instanciamos el servicio ListService, para poder hacer uso del mismo 
-    //en cualquier otro método de este componente 
+    // instanciamos el servicio ListService, para poder hacer uso del mismo
+    //en cualquier otro método de este componente
     function AppComponent(listService) {
         this.listService = listService;
         this.title = 'Mi Shopping List';
-        /*
-        items = [
-                    {productName: 'Manzana', cantidad: 5},
-                    {productName: 'Pera', cantidad: 2},
-                    {productName: 'Banana', cantidad: 1},
-                    {productName: 'Kiwi', cantidad: 3},
-                    {productName: 'Melocoton', cantidad: 10}
-        ]
-        */
-        //Declaramos el Array de Items que se mostrará en pantalla de tipo Product    
+        //Declaramos el Array de Items que se mostrará en pantalla de tipo Product
         this.items = [];
         this.newProduct = {
             productName: "",
@@ -48,24 +39,11 @@ var AppComponent = /** @class */ (function () {
         };
     }
     AppComponent.prototype.ngOnInit = function () {
-        //ngOnInit es un método que se ejecuta cuando el componente 
+        //ngOnInit es un método que se ejecuta cuando el componente
         //esta completamente instanciado
         var _this = this;
-        //Usamos el método getItems() del ListService para obtener los items activos 
+        //Usamos el método getItems() del ListService para obtener los items activos
         this.listService.getItems().then(function (items) { return _this.items = items; });
-        /**
-         * Instanciamos un Observable.timer cuya ejecución tenga
-         * un retraso de 1 segundo (1000 milisegundos)
-         * y se re-ejecute cada 3 segundos (3000 milisegundos)
-         * y en cada ejecución llamará al método _pickRandomItems
-         * */
-        /*
-       let timer = Observable.timer(1000,3000);
-       timer.subscribe(t=> {
-           this.pickRandomItems();
-       });
-   
-       */
     };
     AppComponent.prototype.addProduct = function () {
         var _this = this;
@@ -73,11 +51,11 @@ var AppComponent = /** @class */ (function () {
         if (this.newProduct.productName === "" || this.newProduct.cantidad === 0) {
             return;
         }
-        //Usamos el método addProduct del Servcio ListService para almacenar el producto 
+        //Usamos el método addProduct del Servcio ListService para almacenar el producto
         this.listService.addProduct(this.newProduct).then(function (items) {
             //Al resolverse la Promise actualizamos la propiedad items del componente
-            //con el parámetro items que nos devuelve la Promise resuelta en el método 
-            //addProduct del Servcio ListService 
+            //con el parámetro items que nos devuelve la Promise resuelta en el método
+            //addProduct del Servcio ListService
             _this.items = items;
             //Blanquemaos los imputs
             _this.newProduct.cantidad = 0;
@@ -101,10 +79,4 @@ var AppComponent = /** @class */ (function () {
     return AppComponent;
 }());
 exports.AppComponent = AppComponent;
-var Product = /** @class */ (function () {
-    function Product() {
-    }
-    return Product;
-}());
-exports.Product = Product;
 //# sourceMappingURL=app.component.js.map
